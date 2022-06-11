@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.closeContractController = void 0;
+const MongoContractRepository_1 = require("../../repositories/implementations/MongoContractRepository");
+const MongoPilotRepository_1 = require("../../repositories/implementations/MongoPilotRepository");
+const MongoShipRepository_1 = require("../../repositories/implementations/MongoShipRepository");
+const CloseContractUseCase_1 = require("./CloseContractUseCase");
+const CloseContractController_1 = require("./CloseContractController");
+const useCase = new CloseContractUseCase_1.CloseContractUseCase(new MongoContractRepository_1.MongoContractRepository(), new MongoPilotRepository_1.MongoPilotRepository(), new MongoShipRepository_1.MongoShipRepository());
+const closeContractController = new CloseContractController_1.CloseContractController(useCase);
+exports.closeContractController = closeContractController;

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2017",                                 
+    "module": "commonjs",
+    "baseUrl": "./src", // all of the code is gonna live in the source folder
+    "esModuleInterop": true,                            
+    "forceConsistentCasingInFileNames": true,           
+    "strict": false,                                     
+    "outDir": "dist", // were JS is gonna live                               
+    "skipLibCheck": true                                 
+  }
+}

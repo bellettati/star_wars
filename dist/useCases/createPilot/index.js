@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createPilotController = exports.createPilotUseCase = void 0;
+const MongoPilotRepository_1 = require("../../repositories/implementations/MongoPilotRepository");
+const CreatePilotUseCase_1 = require("./CreatePilotUseCase");
+const CreatePilotController_1 = require("./CreatePilotController");
+const mongoPilotRespository = new MongoPilotRepository_1.MongoPilotRepository();
+const createPilotUseCase = new CreatePilotUseCase_1.CreatePilotUseCase(mongoPilotRespository);
+exports.createPilotUseCase = createPilotUseCase;
+const createPilotController = new CreatePilotController_1.CreatePilotController(createPilotUseCase);
+exports.createPilotController = createPilotController;

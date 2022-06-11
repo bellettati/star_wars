@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.findPilotController = exports.findPilotUseCase = void 0;
+const MongoPilotRepository_1 = require("../../repositories/implementations/MongoPilotRepository");
+const FindPilotUseCase_1 = require("./FindPilotUseCase");
+const FindPilotsController_1 = require("./FindPilotsController");
+const repository = new MongoPilotRepository_1.MongoPilotRepository();
+const findPilotUseCase = new FindPilotUseCase_1.FindPilotUseCase(repository);
+exports.findPilotUseCase = findPilotUseCase;
+const findPilotController = new FindPilotsController_1.FindPilotsController(findPilotUseCase);
+exports.findPilotController = findPilotController;
