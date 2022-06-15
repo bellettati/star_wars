@@ -1,27 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeletePilotsController = void 0;
+const HttpException_1 = require("../../providers/errors/HttpException");
 class DeletePilotsController {
     constructor(deletePilotsUseCase) {
         this.deletePilotsUseCase = deletePilotsUseCase;
     }
-    async deleteByPC(req, res) {
+    async deleteByPC(req, res, next) {
         const { pc } = req.params;
         try {
             await this.deletePilotsUseCase.deleteByPC(pc);
             return res.status(200).json({ msg: 'pilot deleted' });
         }
         catch (e) {
-            return res.status(400).json({ error: e.message });
+            next(new HttpException_1.HttpException(400, e.message));
         }
     }
-    async deleteAll(req, res) {
+    async deleteAll(req, res, next) {
         try {
             await this.deletePilotsUseCase.deleteAll();
             return res.status(200).json({ msg: 'all pilots were deleted' });
         }
         catch (e) {
-            return res.status(400).json({ error: e.message });
+            next(new HttpException_1.HttpException(500, e.message));
         }
     }
 }

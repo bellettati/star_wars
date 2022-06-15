@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { HttpException } from '../../providers/errors/HttpException';
 import { PublishContractUseCase } from "./PublishContractUseCase";
 
 export class PublishContractController {
@@ -7,12 +8,12 @@ export class PublishContractController {
     private publishContractUseCase: PublishContractUseCase,
   ) {}
 
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: Request, res: Response, next: NextFunction): Promise<Response> {
     try {
       this.publishContractUseCase.execute();
       return res.status(200).json({ msg: 'contract has been published' });
     } catch(e: any) {
-      return res.status(400).json({ error: e.message });
+      next(new HttpException(500, e.message));
     }
   }
 }

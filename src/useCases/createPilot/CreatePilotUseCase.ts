@@ -13,6 +13,9 @@ export class CreatePilotUseCase {
 
   async execute(data: ICreatePilotRequestDTO): Promise<void> {
     try {
+      if(data.age < 18)
+        throw new Error('has to be 18 or older to be pilot')
+
       const pilot = new Pilot(data);
       const ship = new Ship({
         id: uuidv4(),

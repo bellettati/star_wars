@@ -1,6 +1,11 @@
+import 'dotenv/config';
+
 import { app } from './app';
 import mongoose from 'mongoose';
+import { validateEnv } from './providers/ValidateEnv';
 
-mongoose.connect('mongodb://localhost:27017/test', () => console.log('connected to DB'));
+validateEnv();
 
-app.listen(3000, () => console.log('server listening on port 3000'));
+mongoose.connect(process.env.MONGO_PATH, () => console.log('connected to DB'));
+
+app.listen(Number(process.env.PORT), () => console.log(`server listening on port ${process.env.PORT}`));

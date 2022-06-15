@@ -10,6 +10,8 @@ class CreatePilotUseCase {
     }
     async execute(data) {
         try {
+            if (data.age < 18)
+                throw new Error('has to be 18 or older to be pilot');
             const pilot = new Pilot_1.Pilot(data);
             const ship = new Ship_1.Ship({
                 id: (0, uuid_1.v4)(),
